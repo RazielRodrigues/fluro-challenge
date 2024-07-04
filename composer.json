@@ -1,0 +1,9 @@
+{
+    "require": {
+        "symfony/http-foundation": "^7.0",
+        "symfony/finder": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "11"
+    }
+}
