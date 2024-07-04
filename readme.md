@@ -46,4 +46,4 @@ https://localhost/
 
 # TESTS
 
-vendor/bin/phpunit CheckoutTest.php
+vendor/bin/phpunit test/CheckoutTest.php
