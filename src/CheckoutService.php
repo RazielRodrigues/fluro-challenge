@@ -6,7 +6,7 @@ require_once __DIR__ . '/entities/MealDealPromotion.php';
 require_once __DIR__ . '/entities/MultipricedPromotion.php';
 require_once __DIR__ . '/entities/PricingRule.php';
 
-class Checkout
+class CheckoutService
 {
     private $pricingRules;
     private $scannedItems;

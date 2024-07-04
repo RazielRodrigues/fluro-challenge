@@ -7,9 +7,9 @@ require_once __DIR__ . '../../src/entities/Item.php';
 require_once __DIR__ . '../../src/entities/MealDealPromotion.php';
 require_once __DIR__ . '../../src/entities/MultipricedPromotion.php';
 require_once __DIR__ . '../../src/entities/PricingRule.php';
-require_once __DIR__ . '../../src/Checkout.php';
+require_once __DIR__ . '../../src/CheckoutService.php';
 
-class CheckoutTest extends TestCase
+class CheckoutServiceTest extends TestCase
 {
     private $itemA, $itemB, $itemC, $itemD, $itemE, $pricingRules;
 
@@ -35,20 +35,20 @@ class CheckoutTest extends TestCase
 
     public function testNoItems()
     {
-        $checkout = new Checkout($this->pricingRules);
+        $checkout = new CheckoutService($this->pricingRules);
         $this->assertEquals(0, $checkout->total());
     }
 
     public function testSingleItem()
     {
-        $checkout = new Checkout($this->pricingRules);
+        $checkout = new CheckoutService($this->pricingRules);
         $checkout->scan('A');
         $this->assertEquals(50, $checkout->total());
     }
 
     public function testMultipleItemsNoPromotion()
     {
-        $checkout = new Checkout($this->pricingRules);
+        $checkout = new CheckoutService($this->pricingRules);
         $checkout->scan('A');
         $checkout->scan('B');
         $checkout->scan('C');
@@ -57,7 +57,7 @@ class CheckoutTest extends TestCase
 
     public function testMultipricedPromotion()
     {
-        $checkout = new Checkout($this->pricingRules);
+        $checkout = new CheckoutService($this->pricingRules);
         $checkout->scan('B');
         $checkout->scan('B');
         $this->assertEquals(125, $checkout->total());
@@ -65,7 +65,7 @@ class CheckoutTest extends TestCase
 
     public function testBuyNGetOneFreePromotion()
     {
-        $checkout = new Checkout($this->pricingRules);
+        $checkout = new CheckoutService($this->pricingRules);
         $checkout->scan('C');
         $checkout->scan('C');
         $checkout->scan('C');
@@ -75,7 +75,7 @@ class CheckoutTest extends TestCase
 
     public function testMealDealPromotion()
     {
-        $checkout = new Checkout($this->pricingRules);
+        $checkout = new CheckoutService($this->pricingRules);
         $checkout->scan('D');
         $checkout->scan('E');
         $this->assertEquals(300, $checkout->total());
@@ -83,7 +83,7 @@ class CheckoutTest extends TestCase
 
     public function testMixedPromotions()
     {
-        $checkout = new Checkout($this->pricingRules);
+        $checkout = new CheckoutService($this->pricingRules);
         $checkout->scan('A');
         $checkout->scan('B');
         $checkout->scan('B');

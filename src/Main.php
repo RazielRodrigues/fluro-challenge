@@ -5,7 +5,7 @@ require_once __DIR__ . '/entities/Item.php';
 require_once __DIR__ . '/entities/MealDealPromotion.php';
 require_once __DIR__ . '/entities/MultipricedPromotion.php';
 require_once __DIR__ . '/entities/PricingRule.php';
-require_once __DIR__ . '/Checkout.php';
+require_once __DIR__ . '/CheckoutService.php';
 
 function main()
 {
@@ -24,7 +24,7 @@ function main()
         new PricingRule($itemD, new MealDealPromotion([$itemD, $itemE], 300))
     ];
 
-    $checkout = new Checkout($pricingRules);
+    $checkout = new CheckoutService($pricingRules);
 
     $checkout->scan('A');
     $checkout->scan('B');
